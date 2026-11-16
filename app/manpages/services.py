@@ -2,7 +2,7 @@
 from sqlalchemy.orm import Session
 
 from app.manpages.models import ManPage
-from app.schemas import CreateManPageSchema, UpdateManPageSchema
+from app.manpages.schemas import CreateManPageSchema, UpdateManPageSchema
 from app.manpages.exceptions import ManPageNotFoundException, ManPageTitleAlreadyExistException
 
 # test
