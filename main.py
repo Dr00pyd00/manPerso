@@ -5,11 +5,16 @@ from sqlalchemy import text
 from app.core.database import Base, engine 
 from app.manpages.models import ManPage
 from app.tags.models import Tag 
+
+# routers 
 from app.manpages.routes import router as manpage_router
+from app.tags.routes import router as tag_router
+
 
 # test de reception de data 
 app = FastAPI() 
 app.include_router(manpage_router)
+app.include_router(tag_router)
 
 @app.post('/json')
 def test_json(data: dict):
