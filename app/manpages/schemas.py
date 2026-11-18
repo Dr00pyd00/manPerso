@@ -8,6 +8,7 @@ class CreateManPageSchema(BaseModel):
     title: str
     summary: str | None = None 
     text: str 
+    tags: list = []
 
 
 class DisplayManPageSchema(BaseModel):
