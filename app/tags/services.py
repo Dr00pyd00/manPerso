@@ -1,4 +1,5 @@
 
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.tags.exceptions import TagNameAlreadyExistException, TagNotFoundException
@@ -34,5 +35,17 @@ def delete_tag_by_id_service(tag_id: int, db: Session) -> None:
         raise TagNotFoundException
     db.delete(tag)
     db.commit()
+
+
+def get_or_create_tags(tags_list: list, db: Session): 
+    tags = [] 
+    for t in tags_list:
+        stmt = select(Tag).where(Tag.name == t)
+        tag = db.execute(stmt).scalar_one_or_none()
+        if tag is None:
+            tag = Tag(name=t) 
+            db.add(tag) 
+        tags.append(tag) 
+    return tags
 
 
